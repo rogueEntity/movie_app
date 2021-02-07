@@ -1,5 +1,6 @@
 import React from "react";
 import {Component} from "react";// eslint-disable-line no-unused-vars
+import axios from "axios";
 
 class App extends React.Component {
   state = {
@@ -7,10 +8,12 @@ class App extends React.Component {
     movies: []
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({isLoading: false});
-    }, 6000);
+  getMovies = async () => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  }
+
+  omponentDidMount() {
+    this.getMovies();
   }
 
   render() {
